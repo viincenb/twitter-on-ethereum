@@ -1,14 +1,15 @@
+import { Text } from "@fluentui/react";
 import { Tweet } from "../Tweet";
 
 export interface ITweetProps {
   tweet: Tweet;
 }
 
-export const TweetComponent = (props: ITweetProps) => {
+export const TweetComponent = ({ tweet }: ITweetProps) => {
   return (
-    <p>
-      Tweet <br />
-      {props.tweet.content}
-    </p>
+    <>
+      <Text variant="large">{tweet.author}</Text>
+      <Text variant="xxLarge">{tweet.content}</Text>
+    </>
   );
 };

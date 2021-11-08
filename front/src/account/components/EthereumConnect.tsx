@@ -2,10 +2,14 @@ import { DefaultButton } from "@fluentui/react";
 import { useDispatch } from "react-redux";
 import { enableWeb3Account } from "../actions/enableWeb3Account";
 
-export const EthereumConnect = () => {
+export interface IEthereumConnectProps {
+  isDisabled: boolean;
+}
+
+export const EthereumConnect = ({ isDisabled = false }: IEthereumConnectProps) => {
   const dispatch = useDispatch();
 
   const handleClick = () => dispatch(enableWeb3Account());
 
-  return <DefaultButton onClick={handleClick} text="Ethereum connect" />;
+  return <DefaultButton disabled={isDisabled} onClick={handleClick} text="Ethereum connect" />;
 };

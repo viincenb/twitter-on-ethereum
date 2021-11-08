@@ -1,19 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Tweet } from "../../tweet/Tweet";
+import { fetchTimeline } from "../actions/fetchTimeline";
 
 interface timelineState {
   tweets: Tweet[];
 }
 
 const initialState: timelineState = {
-  tweets: [
-    {
-      content: "My first tweet",
-    },
-    {
-      content: "My second tweet",
-    },
-  ],
+  tweets: [],
 };
 
 export const timeline = createSlice({
@@ -24,4 +18,8 @@ export const timeline = createSlice({
       state.tweets = payload;
     },
   },
+  extraReducers: (builder) =>
+    builder.addCase(fetchTimeline.fulfilled, (state, { payload }) => {
+      state.tweets = payload;
+    }),
 });
