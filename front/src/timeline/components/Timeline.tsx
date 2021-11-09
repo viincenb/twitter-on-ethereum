@@ -10,9 +10,9 @@ export const Timeline = (props: ITimelineProps) => {
   const { tweets } = props;
 
   return (
-    <Stack>
-      {tweets.map((tweet) => (
-        <TweetComponent key={tweet.content} tweet={tweet} />
+    <Stack tokens={{ childrenGap: "l2" }}>
+      {tweets.map((tweet, index) => (
+        <TweetComponent key={index} tweet={tweet} />
       ))}
     </Stack>
   );

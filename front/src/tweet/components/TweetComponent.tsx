@@ -1,4 +1,4 @@
-import { Text } from "@fluentui/react";
+import { Stack, Text } from "@fluentui/react";
 import { Tweet } from "../Tweet";
 
 export interface ITweetProps {
@@ -7,9 +7,9 @@ export interface ITweetProps {
 
 export const TweetComponent = ({ tweet }: ITweetProps) => {
   return (
-    <>
-      <Text variant="large">{tweet.author}</Text>
+    <Stack tokens={{ childrenGap: "s1" }}>
+      <Text variant="mediumPlus">{tweet.author}</Text>
       <Text variant="xxLarge">{tweet.content}</Text>
-    </>
+    </Stack>
   );
 };

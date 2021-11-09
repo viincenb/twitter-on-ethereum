@@ -1,4 +1,5 @@
 import React from "react";
+import { Stack } from "@fluentui/react";
 import { Provider, connect } from "react-redux";
 import {
   EthereumConnect,
@@ -68,14 +69,15 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <ConnectedConnect />
-          <ConnectedTweetEditor />
-          <ConnectedFollowInput />
-          <ConnectedTimeline />
-        </header>
-      </div>
+      <Stack
+        horizontalAlign="center"
+        verticalAlign="center"
+      >
+        <ConnectedConnect />
+        <ConnectedTweetEditor />
+        <ConnectedFollowInput />
+        <ConnectedTimeline />
+      </Stack>
     </Provider>
   );
 }

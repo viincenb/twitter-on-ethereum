@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { enableWeb3Account } from "../actions/enableWeb3Account";
 
 export type Status = "offline" | "connecting" | "connected";
@@ -38,14 +38,5 @@ export const connectedAccount = createSlice({
         state.status = "offline";
       }),
 });
-
-const selectSelf = (state: connectedAccountState) => state;
-
-export const accounts = createSelector(selectSelf, (state) => state.accounts);
-
-export const status = createSelector(
-  selectSelf,
-  (state) => state.status
-);
 
 export const { setAccounts, setStatus } = connectedAccount.actions;
