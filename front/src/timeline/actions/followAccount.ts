@@ -12,7 +12,7 @@ export const followAccount = createAsyncThunk<
   async (accountToFollow, { dispatch, extra: { contracts } }) => {
     await dispatch(
       sendContractWithAccount<any>(
-        contracts.tweet.methods.followAccount(accountToFollow)
+        contracts.follow.methods.followAccount(accountToFollow)
       )
     );
     await dispatch(fetchTimeline());

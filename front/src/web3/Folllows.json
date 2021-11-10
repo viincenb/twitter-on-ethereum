@@ -7,7 +7,20 @@
         "type": "address"
       }
     ],
-    "name": "getAccountTweets",
+    "name": "followAccount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "origin",
+        "type": "address"
+      }
+    ],
+    "name": "followingAccounts",
     "outputs": [
       {
         "components": [
@@ -18,21 +31,21 @@
           },
           {
             "internalType": "address",
-            "name": "author",
+            "name": "follower",
             "type": "address"
           },
           {
-            "internalType": "string",
-            "name": "content",
-            "type": "string"
+            "internalType": "address",
+            "name": "followed",
+            "type": "address"
           },
           {
             "internalType": "uint256",
-            "name": "dateCreated",
+            "name": "followDate",
             "type": "uint256"
           }
         ],
-        "internalType": "struct Tweet[]",
+        "internalType": "struct Follow[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -42,7 +55,7 @@
   },
   {
     "inputs": [],
-    "name": "getTweets",
+    "name": "followingAccounts",
     "outputs": [
       {
         "components": [
@@ -53,21 +66,21 @@
           },
           {
             "internalType": "address",
-            "name": "author",
+            "name": "follower",
             "type": "address"
           },
           {
-            "internalType": "string",
-            "name": "content",
-            "type": "string"
+            "internalType": "address",
+            "name": "followed",
+            "type": "address"
           },
           {
             "internalType": "uint256",
-            "name": "dateCreated",
+            "name": "followDate",
             "type": "uint256"
           }
         ],
-        "internalType": "struct Tweet[]",
+        "internalType": "struct Follow[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -78,19 +91,31 @@
   {
     "inputs": [
       {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "content",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct InputTweet",
-        "name": "tweet",
-        "type": "tuple"
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
       }
     ],
-    "name": "sendTweet",
+    "name": "isFollowing",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "unfollowAccount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

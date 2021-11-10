@@ -6,8 +6,13 @@ export interface ITweetProps {
 }
 
 export const TweetComponent = ({ tweet }: ITweetProps) => {
+  const dateCreated: Date | null = tweet.dateCreated
+    ? new Date(tweet.dateCreated * 1000)
+    : null;
+
   return (
     <Stack tokens={{ childrenGap: "s1" }}>
+      {dateCreated && <Text variant="medium">{dateCreated.toLocaleDateString()}</Text>}
       <Text variant="mediumPlus">{tweet.author}</Text>
       <Text variant="xxLarge">{tweet.content}</Text>
     </Stack>

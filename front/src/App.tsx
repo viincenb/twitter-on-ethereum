@@ -29,9 +29,10 @@ function App() {
   )(Timeline);
 
   const mapAccountStateToProps = ({
-    connectedAccount: { status },
+    connectedAccount: { status, hasAccountPermissions, accounts },
   }: RootState): IEthereumConnectProps => ({
     isDisabled: status === "connecting",
+    isLogged: hasAccountPermissions && accounts.length > 0,
   });
 
   const ConnectedConnect = connect<IEthereumConnectProps, {}, {}, RootState>(
@@ -69,14 +70,22 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Stack
-        horizontalAlign="center"
-        verticalAlign="center"
-      >
-        <ConnectedConnect />
-        <ConnectedTweetEditor />
-        <ConnectedFollowInput />
-        <ConnectedTimeline />
+      <Stack horizontal horizontalAlign="stretch" verticalAlign="center">
+        <Stack grow={3} />
+        <Stack
+          style={{ width: "33vw" }}
+          grow
+          horizontalAlign="stretch"
+          verticalAlign="center"
+        >
+          <Stack tokens={{ padding: "l2 0", childrenGap: "s1" }}>
+            <ConnectedConnect />
+            <ConnectedFollowInput />
+            <ConnectedTweetEditor />
+          </Stack>
+          <ConnectedTimeline />
+        </Stack>
+        <Stack grow={3} />
       </Stack>
     </Provider>
   );

@@ -1,13 +1,13 @@
 import { TextField } from "@fluentui/react";
 import React, { useState } from "react";
-import { Tweet } from "../Tweet";
+import { TweetInput } from "../Tweet";
 
 export interface ITweetEditorEvents {
-  onSubmit: (tweet: Tweet) => any;
+  onSubmit: (tweet: TweetInput) => any;
 }
 
 export interface ITweetEditorProps {
-  tweet: Tweet;
+  tweet: TweetInput;
 }
 
 export const TweetEditor = (props: ITweetEditorProps & ITweetEditorEvents) => {

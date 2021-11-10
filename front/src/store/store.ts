@@ -5,7 +5,10 @@ import { createLogger } from "redux-logger";
 import { timeline } from "../timeline/slices/timeline";
 import { tweetEditor } from "../tweet/slices/tweetEditor";
 import { injectContract } from "../web3/middlewares/injectContract";
-import tweetContractAbi from "../tweet/TweetContract.json";
+import tweetContractAbi from "../web3/Tweets.json";
+import followContractAbi from "../web3/Folllows.json";
+import timelineContractAbi from "../web3/Timelines.json";
+import { accountMiddleware } from "../account/middlewares/accountMiddlewares";
 
 const reducer = combineReducers({
   connectedAccount: connectedAccount.reducer,
@@ -23,6 +26,16 @@ const extraArgument = {
       tweetContractAbi,
       "0x5FbDB2315678afecb367f032d93F642f64180aa3"
     ),
+    follow: injectContract(
+      web3,
+      followContractAbi,
+      "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+    ),
+    timeline: injectContract(
+      web3,
+      timelineContractAbi,
+      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+    ),
   },
 };
 
@@ -36,7 +49,8 @@ export const store = configureStore({
     }).concat(
       createLogger({
         collapsed: true,
-      })
+      }),
+      accountMiddleware
     ),
 });
 

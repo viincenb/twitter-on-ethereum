@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { tweet } from "../actions/tweet";
-import { Tweet } from "../Tweet";
+import { TweetInput } from "../Tweet";
 
 export type TweetEditorStatus = "ready" | "sending";
 
 export interface TweetEditorState {
-  tweet: Tweet;
+  tweet: TweetInput;
   status: TweetEditorStatus;
 }
 
