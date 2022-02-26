@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { initializeIcons } from "@fluentui/font-icons-mdl2";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store/store";
 import { listenMetamaskEvents } from "./wallet/metamaskEvents";
+import { Provider } from "react-redux";
+
+initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

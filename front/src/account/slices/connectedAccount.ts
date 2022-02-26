@@ -34,8 +34,7 @@ export const connectedAccount = createSlice({
       })
       .addCase(enableWeb3Account.fulfilled, (state, { payload }) => {
         state.accounts = payload;
-        state.status = "connected";
-        state.hasAccountPermissions = true;
+        state.status = payload.length > 0 ? "connected" : "offline";
       })
       .addCase(enableWeb3Account.rejected, (state) => {
         state.accounts = [];

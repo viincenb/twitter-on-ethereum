@@ -3,15 +3,16 @@ import { useDispatch } from "react-redux";
 import { enableWeb3Account } from "../actions/enableWeb3Account";
 
 export interface IEthereumConnectProps {
-  isDisabled: boolean;
+  isConnecting: boolean;
   isLogged: boolean;
 }
 
 export const EthereumConnect = ({
-  isDisabled = false,
+  isConnecting = false,
   isLogged = true,
 }: IEthereumConnectProps) => {
   const dispatch = useDispatch();
+  const text = isConnecting ? "Connecting..." : "Connect with Ethereum";
 
   const handleClick = () => dispatch(enableWeb3Account());
 
@@ -20,10 +21,6 @@ export const EthereumConnect = ({
   }
 
   return (
-    <DefaultButton
-      disabled={isDisabled}
-      onClick={handleClick}
-      text="Ethereum connect"
-    />
+    <DefaultButton disabled={isConnecting} onClick={handleClick} text={text} />
   );
 };

@@ -1,4 +1,4 @@
-import { TextField } from "@fluentui/react";
+import { TextField, DefaultButton, Stack } from "@fluentui/react";
 import { useState } from "react";
 
 export interface IFollowInputEvents {
@@ -14,19 +14,23 @@ export const FollowInput = (props: IFollowInputEvents) => {
     await props.onSubmit(address);
 
     setAddress("");
-  }
+  };
   const handleChange = (
     event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setAddress(event.currentTarget.value);
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        onChange={handleChange}
-        placeholder="Type the account to follow and hit Enter"
-        value={address}
-      />
-      <input type="submit" hidden />
+      <Stack horizontal tokens={{ childrenGap: "s1" }}>
+        <Stack grow>
+          <TextField
+            onChange={handleChange}
+            placeholder="0x0000000000000000000000000000000000000000"
+            value={address}
+          />
+        </Stack>
+        <DefaultButton type="submit">Follow</DefaultButton>
+      </Stack>
     </form>
   );
 };

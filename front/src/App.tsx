@@ -1,93 +1,43 @@
 import React from "react";
-import { Stack } from "@fluentui/react";
-import { Provider, connect } from "react-redux";
-import {
-  EthereumConnect,
-  IEthereumConnectProps,
-} from "./account/components/EthereumConnect";
-import { RootState, store } from "./store/store";
-import { followAccount } from "./timeline/actions/followAccount";
-import {
-  FollowInput,
-  IFollowInputEvents,
-} from "./timeline/components/FollowInput";
-import { ITimelineProps, Timeline } from "./timeline/components/Timeline";
-import { tweet } from "./tweet/actions/tweet";
-import {
-  ITweetEditorEvents,
-  ITweetEditorProps,
-  TweetEditor,
-} from "./tweet/components/TweetEditor";
+import { Stack, Text } from "@fluentui/react";
+import { AccountTimeline } from "./timeline/components/AccountTimeline";
+import { AccountFollowInput } from "./timeline/components/AccountFollowInput";
+import { AccountTweetEditor } from "./tweet/components/AccountTweetEditor";
+import { AccountEthereumConnect } from "./account/components/AccountEthereumConnect";
+import { useAppSelector } from "./store/store";
 
 function App() {
-  const mapStateToProps = ({
-    timeline: { tweets },
-  }: RootState): ITimelineProps => ({ tweets });
+  const status = useAppSelector((state) => state.connectedAccount.status);
 
-  const ConnectedTimeline = connect<ITimelineProps, {}, {}, RootState>(
-    mapStateToProps
-  )(Timeline);
+  const Content =
+    status !== "connected" ? (
+      <AccountEthereumConnect />
+    ) : (
+      <>
+        <Stack grow={3} />
+        <Stack grow horizontalAlign="stretch" verticalAlign="center">
+          <Text variant="xxLarge">Web3 Twitter</Text>
 
-  const mapAccountStateToProps = ({
-    connectedAccount: { status, hasAccountPermissions, accounts },
-  }: RootState): IEthereumConnectProps => ({
-    isDisabled: status === "connecting",
-    isLogged: hasAccountPermissions && accounts.length > 0,
-  });
+          <Stack tokens={{ padding: "l2 0", childrenGap: "m" }}>
+            <AccountTweetEditor />
+            <AccountFollowInput />
+          </Stack>
+          <AccountTimeline />
+        </Stack>
 
-  const ConnectedConnect = connect<IEthereumConnectProps, {}, {}, RootState>(
-    mapAccountStateToProps
-  )(EthereumConnect);
-
-  const mapTweetEditorStateToProps = ({
-    tweetEditor: { tweet },
-  }: RootState): ITweetEditorProps => ({
-    tweet,
-  });
-
-  const mapTweetEditorDispatchToEvents = {
-    onSubmit: tweet,
-  };
-
-  const ConnectedTweetEditor = connect<
-    ITweetEditorProps,
-    ITweetEditorEvents,
-    {},
-    RootState
-  >(
-    mapTweetEditorStateToProps,
-    mapTweetEditorDispatchToEvents
-  )(TweetEditor);
-
-  const mapFollowInputDispatchToEvents = {
-    onSubmit: followAccount,
-  };
-
-  const ConnectedFollowInput = connect<{}, IFollowInputEvents, {}, RootState>(
-    () => ({}),
-    mapFollowInputDispatchToEvents
-  )(FollowInput);
+        <Stack grow={3} />
+      </>
+    );
 
   return (
-    <Provider store={store}>
-      <Stack horizontal horizontalAlign="stretch" verticalAlign="center">
-        <Stack grow={3} />
-        <Stack
-          style={{ width: "33vw" }}
-          grow
-          horizontalAlign="stretch"
-          verticalAlign="center"
-        >
-          <Stack tokens={{ padding: "l2 0", childrenGap: "s1" }}>
-            <ConnectedConnect />
-            <ConnectedFollowInput />
-            <ConnectedTweetEditor />
-          </Stack>
-          <ConnectedTimeline />
-        </Stack>
-        <Stack grow={3} />
-      </Stack>
-    </Provider>
+    <Stack
+      style={{ height: "100vh" }}
+      horizontal
+      horizontalAlign="center"
+      verticalAlign="center"
+    >
+      {Content}
+    </Stack>
   );
 }
 
