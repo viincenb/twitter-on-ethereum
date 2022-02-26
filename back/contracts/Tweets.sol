@@ -14,6 +14,8 @@ struct InputTweet {
 }
 
 interface ITweets {
+    event NewTweet(Tweet tweet);
+
     function getAccountTweets(address account) external view returns (Tweet[] memory);
     function getTweets() external view returns (Tweet[] memory);
     function sendTweet(InputTweet memory tweet) external;
@@ -52,5 +54,7 @@ contract Tweets is ITweets {
 
         tweets[tweetId] = newTweet;
         accountTweets[msg.sender].push(tweetId);
+
+        emit NewTweet(newTweet);
     }
 }

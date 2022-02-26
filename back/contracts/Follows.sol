@@ -10,6 +10,9 @@ struct Follow {
 }
 
 interface IFollows {
+    event Followed(Follow follow);
+    event Unfollowed(Follow follow);
+
     function followingAccounts() external view returns (Follow[] memory);
     function followingAccounts(address origin) external view returns (Follow[] memory);
     function followAccount(address account) external;
@@ -55,6 +58,8 @@ contract Follows is IFollows {
 
         follows[newFollow.id] = newFollow;
         followsByAccount[msg.sender].push(newFollow.id);
+
+        emit Followed(newFollow);
     }
 
     function unfollowAccount(address account) override public following(account) {
@@ -66,6 +71,8 @@ contract Follows is IFollows {
             Follow memory follow = follows[ids[i]];
             
             if (follow.followed == account) {
+                emit Unfollowed(follow);
+
                 continue;
             }
 
