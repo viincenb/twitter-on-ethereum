@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx hardhat test"
+    "test": "npx hardhat test",
+    "start": "npx hardhat node",
+    "deploy:contracts:localnode": "npx hardhat run scripts/deploy.ts --network localhost"
   },
   "author": "",
   "license": "ISC",
