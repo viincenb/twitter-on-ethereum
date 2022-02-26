@@ -12,7 +12,7 @@ export const EthereumConnect = ({
   isLogged = true,
 }: IEthereumConnectProps) => {
   const dispatch = useDispatch();
-  const text = isConnecting ? "Connecting..." : "Connect with Ethereum";
+  const text = isConnecting ? "Signing in..." : "Sign in with Ethereum";
 
   const handleClick = () => dispatch(enableWeb3Account());
 

@@ -1,4 +1,4 @@
-import { TextField, DefaultButton, Stack } from "@fluentui/react";
+import { TextField, DefaultButton, Stack, IIconProps } from "@fluentui/react";
 import { useState } from "react";
 
 export interface IFollowInputEvents {
@@ -7,6 +7,7 @@ export interface IFollowInputEvents {
 
 export const FollowInput = (props: IFollowInputEvents) => {
   const [address, setAddress] = useState("");
+  const addFriendIcon: IIconProps = { iconName: "AddFriend" };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ export const FollowInput = (props: IFollowInputEvents) => {
             value={address}
           />
         </Stack>
-        <DefaultButton type="submit">Follow</DefaultButton>
+        <DefaultButton type="submit" text="Follow" iconProps={addFriendIcon} />
       </Stack>
     </form>
   );

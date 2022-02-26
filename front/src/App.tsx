@@ -13,20 +13,13 @@ function App() {
     status !== "connected" ? (
       <AccountEthereumConnect />
     ) : (
-      <>
-        <Stack grow={3} />
-        <Stack grow horizontalAlign="stretch" verticalAlign="center">
-          <Text variant="xxLarge">Web3 Twitter</Text>
-
-          <Stack tokens={{ padding: "l2 0", childrenGap: "m" }}>
-            <AccountTweetEditor />
-            <AccountFollowInput />
-          </Stack>
-          <AccountTimeline />
+      <Stack tokens={{ childrenGap: "l2" }}>
+        <Stack tokens={{ childrenGap: "m" }}>
+          <AccountTweetEditor />
+          <AccountFollowInput />
         </Stack>
-
-        <Stack grow={3} />
-      </>
+        <AccountTimeline />
+      </Stack>
     );
 
   return (
@@ -36,7 +29,15 @@ function App() {
       horizontalAlign="center"
       verticalAlign="center"
     >
-      {Content}
+      <Stack
+        style={{ width: "550px" }}
+        horizontalAlign="stretch"
+        verticalAlign="center"
+        tokens={{ childrenGap: "m" }}
+      >
+        <Text variant="xxLarge">Web3 Twitter</Text>
+        <Stack horizontalAlign="stretch">{Content}</Stack>
+      </Stack>
     </Stack>
   );
 }
