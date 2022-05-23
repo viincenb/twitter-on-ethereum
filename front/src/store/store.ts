@@ -25,17 +25,17 @@ const extraArgument = {
     tweet: injectContract(
       web3,
       tweetContractAbi,
-      "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      "0x10A4F076F65FC5EF27934863888556E8811583d0"
     ),
     follow: injectContract(
       web3,
       followContractAbi,
-      "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      "0x866174D8E0dd7754407D6617a9a52F0aB0E83F7e"
     ),
     timeline: injectContract(
       web3,
       timelineContractAbi,
-      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      "0x7b1E6358De3C08d063B4F3D3129C078805FF3E19"
     ),
   },
 };

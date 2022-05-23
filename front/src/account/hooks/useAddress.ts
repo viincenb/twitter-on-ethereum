@@ -1,0 +1,1 @@
+export const useAddress = (address: string) => `${address.slice(2, 5)}...${address.slice(-5, -1)}`
